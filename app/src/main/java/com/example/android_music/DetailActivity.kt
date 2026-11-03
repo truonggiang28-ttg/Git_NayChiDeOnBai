@@ -31,14 +31,9 @@ class DetailActivity : AppCompatActivity() {
 
         intent.extras?.let { bundle ->
             with(binding) {
-                val name = bundle.getString("TenBai", "Chưa có tên")
-                val duration = bundle.getDouble("ThoiLuong", 0.0)
-                val author = bundle.getString("TacGia", "Chưa có tác giả")
-
-                tvNameMusic.text = "Tên bài hát: $name"
-                tvDuration.text = "Thời lượng: ${duration} phút"
-                tvAuthor.text = "Tác giả: $author"
-
+                tvNameMusic.text = bundle.getString("TenBai", "Chưa có tên")
+                tvDuration.text = bundle.getDouble("ThoiLuong", 0.0).toString()
+                tvAuthor.text = bundle.getString("TacGia", "Chưa có tác giả")
             }
         }
 
@@ -48,17 +43,16 @@ class DetailActivity : AppCompatActivity() {
         }
 
         binding.btnEdit.setOnClickListener {
+
             with(binding){
                 val intent = Intent(this@DetailActivity, ChinhSuaChiTietActivity::class.java).apply{
-                    with(binding){
-                        putExtra("TenBaiNow",tvNameMusic.text)
-                        putExtra("ThoiLuongNow", tvDuration.text)
-                        putExtra("TacGiaNow",tvAuthor.text)
+                        putExtra("TenBaiNow",tvNameMusic.text.toString())
+                        val ThoiLuongDouble = tvDuration.text.toString().toDoubleOrNull()
+                        putExtra("ThoiLuongNow", ThoiLuongDouble)
+                        putExtra("TacGiaNow",tvAuthor.text.toString())
                     }
                     editLauncher.launch(intent)
                 }
-
             }
         }
     }
-}

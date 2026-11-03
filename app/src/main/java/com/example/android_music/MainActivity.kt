@@ -57,19 +57,22 @@ class MainActivity : AppCompatActivity() {
                 val ThoiGian = ThoiLuong_313.toDoubleOrNull() ?: 0.0
 
                 if (ThoiGian <= 0){
-                    Toast.makeText(this@MainActivity,"Du lieu khong hop le",Toast.LENGTH_SHORT)
+                    edtDuration.error = "Thời lượng phải lớn hơn 0"
+                    edtDuration.requestFocus()
+                    Toast.makeText(this@MainActivity, "Dữ liệu không hợp lệ", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
                 }
                 Name_313 = TenBai_313
                 Duration_313 = ThoiGian
                 Author_313 = TacGia_313
 
-                Toast.makeText(this@MainActivity,"Da them bai hat", Toast.LENGTH_SHORT)
+                Toast.makeText(this@MainActivity,"Da them bai hat", Toast.LENGTH_SHORT).show()
 
             }
         }
         binding.btnDetail.setOnClickListener {
-            val intent = Intent(this@MainActivity, DetailActivity::class.java).apply {
-                with(binding) {
+            with(binding) {
+                val intent = Intent(this@MainActivity, DetailActivity::class.java).apply {
                     putExtra("TenBai", Name_313)
                     putExtra("ThoiLuong", Duration_313)
                     putExtra("TacGia", Author_313)

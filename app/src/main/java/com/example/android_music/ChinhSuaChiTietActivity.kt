@@ -32,12 +32,12 @@ class ChinhSuaChiTietActivity: AppCompatActivity() {
         binding.btnSave.setOnClickListener {
             with(binding){
                 val NameMusicNew = edtNameBai.text.toString()
-                val DurationNew = edtDurationBai.text.toString()
+                val DurationNew = edtDurationBai.text.toString().toDoubleOrNull()?:0.0
                 val AuthorNew = edtAuthorBai.text.toString()
 
                 val resultIntent = Intent().apply{
                     putExtra("TenBaiNew", NameMusicNew)
-                    putExtra("ThoiLuongNew",DurationNew.toDoubleOrNull())
+                    putExtra("ThoiLuongNew",DurationNew)
                     putExtra("TacGiaNew",AuthorNew)
                 }
                 setResult(Activity.RESULT_OK, resultIntent)
