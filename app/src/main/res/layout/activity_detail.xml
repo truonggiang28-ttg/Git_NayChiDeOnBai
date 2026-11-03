@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- 1. Tên bài hát -->
+    <TextView
+        android:id="@+id/tv_NameMusic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tên bài hát: "
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="12dp" />
+
+    <!-- 2. Thời lượng -->
+    <TextView
+        android:id="@+id/tv_Duration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thời lượng: "
+        android:textSize="16sp"
+        android:layout_marginBottom="12dp" />
+
+    <!-- 3. Tác giả -->
+    <TextView
+        android:id="@+id/tv_Author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tác giả: "
+        android:textSize="16sp"
+        android:layout_marginBottom="24dp" />
+
+    <!-- LinearLayout chứa 2 nút bấm đặt nằm ngang -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_Back"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:text="Quay lại" />
+
+        <Button
+            android:id="@+id/btn_Edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="Sửa" />
+
+    </LinearLayout>
+
+</LinearLayout>
