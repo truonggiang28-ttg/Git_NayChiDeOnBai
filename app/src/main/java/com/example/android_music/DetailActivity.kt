@@ -2,11 +2,24 @@ package com.example.android_music
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.android_music.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
-
+    private val editLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+        result ->
+        if (result.resultCode == RESULT_OK){
+            result.data?.extras?.let {
+                bundle ->
+                with(binding){
+                    tvNameMusic.text = bundle.getString("TenBaiNew")
+                    tvDuration.text = bundle.getDouble("ThoiLuongNew").toString()
+                    tvAuthor.text = bundle.getString("TacGiaNew")
+                }
+            }
+        }
+    }
     private lateinit var binding: ActivityDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,8 +36,9 @@ class DetailActivity : AppCompatActivity() {
                 val author = bundle.getString("TacGia", "Chưa có tác giả")
 
                 tvNameMusic.text = "Tên bài hát: $name"
-                tvDuration.text = "Thời lượng: ${duration.toString()} phút"
+                tvDuration.text = "Thời lượng: ${duration} phút"
                 tvAuthor.text = "Tác giả: $author"
+
             }
         }
 
@@ -35,8 +49,15 @@ class DetailActivity : AppCompatActivity() {
 
         binding.btnEdit.setOnClickListener {
             with(binding){
-                val intent = Intent(this@DetailActivity, ChinhSuaChiTietActivity::class.java)
-                startActivity(intent)
+                val intent = Intent(this@DetailActivity, ChinhSuaChiTietActivity::class.java).apply{
+                    with(binding){
+                        putExtra("TenBaiNow",tvNameMusic.text)
+                        putExtra("ThoiLuongNow", tvDuration.text)
+                        putExtra("TacGiaNow",tvAuthor.text)
+                    }
+                    editLauncher.launch(intent)
+                }
+
             }
         }
     }
