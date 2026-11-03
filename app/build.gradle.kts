@@ -8,6 +8,10 @@ android {
         version = release(37)
     }
 
+    buildFeatures{
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId = "com.example.android_music"
         minSdk = 24
