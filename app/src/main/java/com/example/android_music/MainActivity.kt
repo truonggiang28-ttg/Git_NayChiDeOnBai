@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         }
         binding.btnDetail.setOnClickListener {
             val intent = Intent(this@MainActivity, DetailActivity::class.java)
-            startActivity(intent)
+                startActivity(intent)
         }
     }
 }
