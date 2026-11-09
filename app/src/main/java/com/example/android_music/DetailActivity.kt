@@ -9,6 +9,16 @@ import com.example.android_music.databinding.ActivityDetailBinding
 class DetailActivity: AppCompatActivity() {
     private val editLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
         result ->
+        if (result.resultCode == RESULT_OK){
+            result.data?.extras?.let {
+                    bundle ->
+                with(binding){
+                    tvNameMusic.text = bundle.getString("TenBaiNew")
+                    tvDuration.text = bundle.getDouble("ThoiLuongNew").toString()
+                    tvAuthor.text = bundle.getString("TacGiaNew")
+                }
+            }
+        }
     }
     private lateinit var binding: ActivityDetailBinding
     override fun onCreate(savedInstanceState: Bundle?) {
