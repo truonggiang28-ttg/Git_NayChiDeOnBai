@@ -28,6 +28,25 @@ class EditDetailActivity: AppCompatActivity(){
                     edtAuthorSua.setText(AuthorNow_313)
                 }
         }
+        binding.btnSave.setOnClickListener {
+            with(binding){
+                val NameMusicNew_313 = edtNameMusicSua.text.toString()
+                val DurationNew_313 = edtDurationSua.text.toString().toDoubleOrNull()?:0.0
+                val AuthorNew_313 = edtAuthorSua.text.toString()
+
+                val result = Intent().apply {
+                    putExtra("TenBaiNew", NameMusicNew_313)
+                    putExtra("ThoiLuongNew", DurationNew_313)
+                    putExtra("TacGiaNew",AuthorNew_313)
+                }
+                setResult(Activity.RESULT_OK,result)
+                finish()
+            }
+        }
+        binding.btnExit.setOnClickListener {
+            setResult(Activity.RESULT_CANCELED)
+            finish()
+        }
 
     }
 }
