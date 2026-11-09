@@ -38,7 +38,11 @@ class MainActivity : AppCompatActivity() {
         }
         binding.btnDetail.setOnClickListener {
             with(binding){
-                val intent = Intent(this@MainActivity, DetailActivity::class.java)
+                val intent = Intent(this@MainActivity, DetailActivity::class.java).apply {
+                    putExtra("TenBai",NameSave_313)
+                    putExtra("ThoiLuong",Duration_313)
+                    putExtra("TacGia",Author_313)
+                }
                 startActivity(intent)
             }
         }
